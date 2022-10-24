@@ -6,7 +6,10 @@ Hooks and configuration to build a Halium initramfs
 
 Building your own initramfs image wtih the tools in this repository is simple.
 
-Requirements:
+Requirements build on nochroot:
+* apt-get install initramfs-tools dctrl-tools e2fsprogs libc6-dev zlib1g-dev libssl-dev busybox-static debootstrap binfmt-support dpkg-dev
+
+Requirements build on chroot:
 
 * Any OS with `debootstrap`
 * `sudo` rights on the machine, to create the chroot

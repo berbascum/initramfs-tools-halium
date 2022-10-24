@@ -57,6 +57,22 @@ cleanup() {
 }
 trap cleanup INT EXIT
 
+# initramfs-tools in droidian is not installing all init scripts in /usr/share/initramfs-tools/scripts
+OS_DROIDIAN=$(cat /etc/os-release | grep -c 'ID=droidian')
+if [ "$OS_DROIDIAN" -eq "1" ]; then
+	apt-get update && apt-get -y install linux-initramfs-halium-generic rsync
+	mkdir "${tmpdir}/tmp"
+	CURR_DIR=$(pwd)
+	cp /usr/lib/aarch64-linux-gnu/halium-generic-initramfs/initrd.img-halium-generic "${tmpdir}/tmp/initram.gz"
+	cd "${tmpdir}/tmp"
+	gunzip "${tmpdir}/tmp/initram.gz" 
+	cpio -idv < "${tmpdir}/tmp/initram"
+	ls "${tmpdir}/tmp/scripts/"
+	rsync -av "${tmpdir}/tmp/scripts/" /usr/share/initramfs-tools/scripts/
+	rm -r "${tmpdir}/tmp"
+	cd $CURR_DIR
+fi
+
 # Copy initramfs-tools config directory
 mkdir -p ${tmpdir}/etc/initramfs-tools
 cp -R /etc/initramfs-tools/* ${tmpdir}/etc/initramfs-tools/
