@@ -26,11 +26,16 @@ copy_exec /bin/mount /bin
 copy_exec /sbin/dumpe2fs /sbin
 copy_exec /lib/$DEB_HOST_MULTIARCH/libz.so.1
 copy_exec /usr/lib/$DEB_HOST_MULTIARCH/libcrypto.so
-copy_exec /usr/lib/$DEB_HOST_MULTIARCH/libdl.so
+copy_exec /usr/lib/$DEB_HOST_MULTIARCH/libdl.so.2
 
 # Droidian: copy touchscreen rules
 mkdir -p "${DESTDIR}/etc/udev/rules.d"
-cp /etc/udev/rules.d/90-touchscreen.rules "${DESTDIR}/etc/udev/rules.d"
+cp -a lavender-files/90-touchscreen.rules "${DESTDIR}/etc/udev/rules.d"
+# Droidian: copy backlight rules
+cp -a lavender-files/90-backlight.rules "${DESTDIR}/etc/udev/rules.d"
+# Droidian: create halium-hooks to set brightness on lavender
+#mkdir -p "${DESTDIR}/scripts"
+cp -a lavender-files/halium-hooks "${DESTDIR}/scripts"
 
 # Droidian: copy /usr/share/X11/xkb
 mkdir -p "${DESTDIR}/usr/share/X11/xkb"
