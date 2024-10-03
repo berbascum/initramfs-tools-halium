@@ -2,7 +2,7 @@
 
 set -e
 
-MINIENV_HOOKS="cryptroot plymouth unl0kr droidian-encryption-service parse-android-dynparts dmsetup"
+MINIENV_HOOKS="cryptroot plymouth unl0kr droidian-encryption-service parse-android-dynparts dmsetup yubikey-luks"
 
 export FLASH_KERNEL_SKIP=1
 export DEBIAN_FRONTEND=noninteractive
@@ -61,7 +61,7 @@ done
 [ -z $FILENAME ] && FILENAME="initrd.img-halium-generic"
 
 # list all packages needed for halium's initrd here
-[ -z $INCHROOTPKGS ] && INCHROOTPKGS="initramfs-tools dctrl-tools e2fsprogs libc6-dev zlib1g-dev libssl-dev busybox-static lvm2 cryptsetup xkb-data dropbear pigz liblz4-tool"
+[ -z $INCHROOTPKGS ] && INCHROOTPKGS="initramfs-tools dctrl-tools e2fsprogs libc6-dev zlib1g-dev libssl-dev busybox-static lvm2 cryptsetup xkb-data dropbear pigz liblz4-tool yubikey-luks usbutils"
 
 BOOTSTRAP_BIN="debootstrap --arch $ARCH --variant=minbase"
 
@@ -145,7 +145,7 @@ export DESTDIR="/tmp/droidian-minienv"
 export verbose="y"
 
 # Create initial skeleton, hook might get confused
-mkdir -p ${DESTDIR}/etc ${DESTDIR}/usr/lib ${DESTDIR}/lib ${DESTDIR}/mnt ${DESTDIR}/tmp
+mkdir -p ${DESTDIR}/etc ${DESTDIR}/usr/lib ${DESTDIR}/lib ${DESTDIR}/mnt ${DESTDIR}/tmp ${DESTDIR}/sbin ${DESTDIR}/usr/sbin
 
 # Droidian specific
 /usr/sbin/plymouth-set-default-theme -R droidian
