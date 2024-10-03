@@ -6,7 +6,7 @@ MINIENV_HOOKS="cryptroot plymouth unl0kr droidian-encryption-service parse-andro
 
 export FLASH_KERNEL_SKIP=1
 export DEBIAN_FRONTEND=noninteractive
-DEFAULTMIRROR="https://archive.debian.org/debian"
+DEFAULTMIRROR="https://deb.debian.org/debian"
 APT_COMMAND="apt -y"
 
 usage() {
@@ -53,7 +53,7 @@ done
 # Defaults for all arguments, so they can be set by the environment
 [ -z $ARCH ] && ARCH="armhf"
 [ -z $MIRROR ] && MIRROR=$DEFAULTMIRROR
-[ -z $RELEASE ] && RELEASE="stretch"
+[ -z $RELEASE ] && RELEASE="bookworm"
 [ -z $ROOT ] && ROOT=./build/$ARCH
 [ -z $OUT ] && OUT=./out
 [ -z $IS_RECOVERY ] && IS_RECOVERY="no"
