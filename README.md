@@ -2,6 +2,29 @@
 
 Hooks and configuration to build a Halium initramfs
 
+## fork info
+This branch is a droidian upstream temporal fork by Berbascum.
+
+There are two reasons for forking it:
+
+### Fork reason
+Analizing the current situation
+
+1-Building initram: from a droidian device running snapshot 99.
+Some packages are required: unl0kr
+
+2- Plymouth issue: Upstream currently is building a stretch based initram due to compatibility with some legacy devices. Since stretch is not compatible with some droidian stuff, a mixed environment (bookworm and stretch) was implemented as droidian minienv.
+But there is an issue with plymouth: Since reverted to stretch and implemented the minienv, the print messages on plymouth are not showed anymore.
+
+3- Build issue: Currently cannot debug it properly, since the build script is not creating a full initram image (the resulting image has 7MB instead 15MB). Not aparent errors, so debug is needed.
+TODO: Try building deb package to use build deps and rules?
+
+4- Bookworm based: Using a Droidian bookworm based initram (builded on 2023 February) and applying the missing halium script patches from upstream gets working the plymouth messages again.
+
+5- Adding hooks: Because the build issue (3), to add new packages from a initram-tools hook, i'm adding the hook in build-initram.sh and building. Since the resulting image is not bootable (because the build issue 3), i'm extracting the image and getting the new files added using git diff.
+
+TODO: Determine if the plymouth issue is a stretch plymouth version or a minienv problem.
+
 ## Build an initramfs image
 
 Building your own initramfs image wtih the tools in this repository is simple.
