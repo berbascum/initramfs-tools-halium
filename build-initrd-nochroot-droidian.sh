@@ -51,7 +51,7 @@ error() {
 
 ## Install prereqs
 info "Installing prereqs"
-sudo apt-get install -y initramfs-tools dctrl-tools e2fsprogs libc6-dev zlib1g-dev libssl-dev busybox-static lvm2 cryptsetup xkb-data dropbear pigz liblz4-tool cryptsetup-initramfs yubikey-luks usbutils plymouth plymouth-themes plymouth-theme-droidian unl0kr
+sudo apt-get install -y initramfs-tools dctrl-tools e2fsprogs libc6-dev zlib1g-dev libssl-dev busybox-static lvm2 cryptsetup xkb-data dropbear pigz liblz4-1 cryptsetup-initramfs yubikey-luks usbutils plymouth plymouth-themes plymouth-theme-droidian unl0kr
 
 info "Starting initramfs build"
 
