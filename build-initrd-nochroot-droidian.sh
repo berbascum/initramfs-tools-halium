@@ -31,6 +31,9 @@
 # The goal is to obtain an initramfs in a debian packaging-friendly
 # way.
 
+# This variant nochroot-droidian is useful to build a Droidian initram from a running device, tested on 2024 Dec from droidian spapshot 100
+# It includes the yubikey-luks hook adding support to unlock a device using a physical key.
+
 set -e
 
 info() {
