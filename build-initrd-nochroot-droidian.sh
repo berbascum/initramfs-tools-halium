@@ -73,6 +73,7 @@ cp -av hooks/* ${tmpdir}/etc/initramfs-tools/hooks
 if [ "${IS_RECOVERY}" == "yes" ]; then
 	cp -av hooks-recovery/* ${tmpdir}/etc/initramfs-tools/hooks
 fi
+rm -v ${tmpdir}/etc/initramfs-tools/hooks/zzz_droidian_minienv
 
 # Set plymouth default theme
 plymouth-set-default-theme -R droidian
