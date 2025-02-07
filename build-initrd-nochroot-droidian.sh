@@ -78,7 +78,7 @@ if [ "${IS_RECOVERY}" == "yes" ]; then
 fi
 rm -v ${tmpdir}/etc/initramfs-tools/hooks/zzz_droidian_minienv
 
-# Set plymouth default theme
+# Set plymouth default theme, root perms required
 plymouth-set-default-theme -R droidian
 
 # Finally build
